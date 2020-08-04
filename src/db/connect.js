@@ -1,12 +1,12 @@
 import mongoose from 'mongoose'
-import config from './config'
+import { DB_URL } from '../config'
 
-export default (url = config.dbUrl, opts = {}) => {
+export default (url = DB_URL, opts = {}) => {
   return mongoose.connect(url, {
     ...opts,
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
-    useFindAndModify: false
+    useFindAndModify: false,
   })
 }
