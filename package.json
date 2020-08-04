@@ -1,0 +1,15 @@
+{
+  "name": "open-song-database",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Confidence-Okoghenun/open-song-database.git",
+  "author": "Confidence Okoghenun <confidenceboi@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-mongo-sanitize": "^2.0.0",
+    "morgan": "^1.10.0"
+  }
+}
