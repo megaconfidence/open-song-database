@@ -1,3 +1,5 @@
+const excludeFields = '-createdAt -__v'
+
 const createModel = model => {
   return {
     async page(page, limit) {
@@ -7,7 +9,7 @@ const createModel = model => {
         .limit(limit)
     },
     async findMany(filter) {
-      return await model.find(filter)
+      return await model.find(filter, excludeFields).lean()
     },
     async search(query, limit) {
       return await model
@@ -21,7 +23,7 @@ const createModel = model => {
         .sort({ score: { $meta: 'textScore' } })
     },
     async findOne(id) {
-      return await model.findById(id)
+      return await model.findById(id, excludeFields).lean()
     }
   }
 }
