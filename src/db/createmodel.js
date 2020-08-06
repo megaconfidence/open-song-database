@@ -8,8 +8,11 @@ const createModel = model => {
         .skip(page * limit - limit)
         .limit(limit)
     },
-    async findMany(filter) {
-      return await model.find(filter, excludeFields).lean()
+    async findMany(filter, pupData='') {
+      return await model
+        .find(filter, excludeFields)
+        .populate(pupData)
+        .lean()
     },
     async search(query, limit) {
       return await model
@@ -22,8 +25,11 @@ const createModel = model => {
         .limit(limit)
         .sort({ score: { $meta: 'textScore' } })
     },
-    async findOne(id) {
-      return await model.findById(id, excludeFields).lean()
+    async findOne(id, pupData='') {
+      return await model
+        .findById(id, excludeFields)
+        .populate(pupData)
+        .lean()
     }
   }
 }
