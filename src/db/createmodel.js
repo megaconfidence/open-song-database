@@ -1,20 +1,23 @@
-const excludeFields = '-createdAt -__v'
+const excludeFields = '-createdAt -__v -playId -url'
+const pupData = { path: 'genre', select: 'name' }
 
 const createModel = model => {
   return {
-    async page(page, limit) {
+    async page(page = 1, limit = 1) {
       return await model
-        .find()
+        .find({}, excludeFields)
         .skip(page * limit - limit)
         .limit(limit)
+        .populate(pupData)
+        .lean()
     },
-    async findMany(filter, pupData='') {
+    async findMany(filter) {
       return await model
         .find(filter, excludeFields)
         .populate(pupData)
         .lean()
     },
-    async search(query, limit) {
+    async search(query, limit = 1) {
       return await model
         .find(
           { $text: { $search: query } },
@@ -23,9 +26,10 @@ const createModel = model => {
           }
         )
         .limit(limit)
+        .select(excludeFields)
         .sort({ score: { $meta: 'textScore' } })
     },
-    async findOne(id, pupData='') {
+    async findOne(id) {
       return await model
         .findById(id, excludeFields)
         .populate(pupData)
@@ -35,3 +39,13 @@ const createModel = model => {
 }
 
 export default createModel
+// return await model.aggregate([
+//   { $match: { $text: { $search: query } } },
+//   { $limit: limit },
+//   {
+//     $sort: {
+//       score: { $meta: 'textScore' }
+//     }
+//   },
+//   { $project: { createdAt: 0, __v: 0, playId: 0, url: 0 } }
+// ])
