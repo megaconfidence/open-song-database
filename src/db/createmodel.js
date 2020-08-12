@@ -1,5 +1,5 @@
 const excludeFields = '-createdAt -__v -playId -url'
-const pupData = { path: 'genre', select: 'name' }
+const pupData = [{ path: 'genre', select: 'name' },{ path: 'artist', select: 'name' }]
 
 const createModel = model => {
   return {
@@ -26,6 +26,7 @@ const createModel = model => {
           }
         )
         .limit(limit)
+        .populate(pupData)
         .select(excludeFields)
         .sort({ score: { $meta: 'textScore' } })
     },
