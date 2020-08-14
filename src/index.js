@@ -1,11 +1,11 @@
 import cors from 'cors'
 import morgan from 'morgan'
 import express from 'express'
+import routes from './routes'
 import { PORT } from './config'
+import { auth, limiter } from './auth'
 import { json, urlencoded } from 'body-parser'
 import mongoSanitize from 'express-mongo-sanitize'
-import routes from './routes'
-import auth from './auth'
 
 export const app = express()
 
@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
   res.json({ ok: true })
 })
 
-app.use('/:token', auth, routes)
+app.use('/:token', limiter, auth, routes)
 
 app.listen(PORT, () => {
   console.log(`🚀 Server ready at http://localhost:${PORT}/`)
