@@ -3,6 +3,7 @@ import SongSchema from './model/song'
 import GenreSchema from './model/genre'
 import AlbumSchema from './model/album'
 import ArtistSchema from './model/artist'
+import UserSchema from './model/user'
 import connect from './connect'
 
 ;(async () => {
@@ -14,8 +15,9 @@ import connect from './connect'
 })()
 
 module.exports = {
+  User: createModel(UserSchema),
+  Song: createModel(SongSchema),
+  Genre: createModel(GenreSchema),
   Album: createModel(AlbumSchema),
   Artist: createModel(ArtistSchema),
-  Genre: createModel(GenreSchema),
-  Song: createModel(SongSchema),
 }

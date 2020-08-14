@@ -1,5 +1,8 @@
 const excludeFields = '-createdAt -__v -playId -url'
-const pupData = [{ path: 'genre', select: 'name' },{ path: 'artist', select: 'name' }]
+const pupData = [
+  { path: 'genre', select: 'name' },
+  { path: 'artist', select: 'name' }
+]
 
 const createModel = model => {
   return {
@@ -17,6 +20,13 @@ const createModel = model => {
         .populate(pupData)
         .lean()
     },
+    async join(data) {
+      const user = await this.findOne({ email: data.email })
+      if (!user) {
+        return await model.create(data)
+      }
+      return user
+    },
     async search(query, limit = 1) {
       return await model
         .find(
@@ -31,8 +41,14 @@ const createModel = model => {
         .sort({ score: { $meta: 'textScore' } })
     },
     async findOne(id) {
+      if (typeof id === 'string') {
+        return await model
+          .findById(id, excludeFields)
+          .populate(pupData)
+          .lean()
+      }
       return await model
-        .findById(id, excludeFields)
+        .findOne(id, excludeFields)
         .populate(pupData)
         .lean()
     }
