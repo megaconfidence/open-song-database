@@ -56,13 +56,3 @@ const createModel = model => {
 }
 
 export default createModel
-// return await model.aggregate([
-//   { $match: { $text: { $search: query } } },
-//   { $limit: limit },
-//   {
-//     $sort: {
-//       score: { $meta: 'textScore' }
-//     }
-//   },
-//   { $project: { createdAt: 0, __v: 0, playId: 0, url: 0 } }
-// ])

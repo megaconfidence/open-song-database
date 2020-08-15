@@ -43,7 +43,7 @@ const mail = async ({ firstname, token, email }) => {
       `
     })
 
-    console.log(`Token sent: ${info.messageId}`)
+    return info.messageId
   } catch (err) {
     console.log(err)
   }

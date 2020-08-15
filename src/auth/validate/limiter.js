@@ -10,7 +10,7 @@ const limiter = rateLimit({
     expiry: 24 * 60 * 60,
     client: new redis(REDIS_CONFIG),
   }),
-  message: 'Too many requests, please try again in 24 hours.'
+  message: 'Too many requests, please try again in 24 hours'
 })
 
 export default limiter

@@ -1,4 +1,4 @@
-const getPageLimitQuery = ({ page, limit, query }) => {
+const getQuery = ({ page, limit, query }) => {
   /**
    * This function validates the page and limit
    * query params and sets their default value to 1.
@@ -13,4 +13,4 @@ const getPageLimitQuery = ({ page, limit, query }) => {
 
   return [p, l, q]
 }
-export default getPageLimitQuery
+export default getQuery
