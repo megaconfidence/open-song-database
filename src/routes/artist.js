@@ -1,7 +1,6 @@
 import models from '../db'
 import { Router } from 'express'
-import asyncMap from '../utils/asyncmap'
-import handleError from '../utils/handleerror'
+import { asyncMap, handleError } from '../utils'
 
 const artist = Router()
 

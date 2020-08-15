@@ -1,7 +1,6 @@
 import models from '../db'
 import { Router } from 'express'
-import getQuery from '../utils/getquery'
-import handleError from '../utils/handleerror'
+import { getQuery, handleError } from '../utils'
 
 const search = Router()
 

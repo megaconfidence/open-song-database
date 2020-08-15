@@ -1,8 +1,6 @@
 import models from '../db'
 import { Router } from 'express'
-import asyncMap from '../utils/asyncmap'
-import getQuery from '../utils/getquery'
-import handleError from '../utils/handleerror'
+import { asyncMap, getQuery, handleError } from '../utils'
 
 const album = Router()
 

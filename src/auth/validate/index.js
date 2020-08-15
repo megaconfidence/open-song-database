@@ -1,6 +1,6 @@
 import models from '../../db'
 import limiter from './limiter'
-import handleError from '../../utils/handleerror'
+import { handleError } from '../../utils'
 
 const auth = handleError(async (req, res, next) => {
   const user = await models.User.findOne({ token: req.params.token })

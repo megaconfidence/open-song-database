@@ -1,6 +1,6 @@
 import models from '../db'
 import { Router } from 'express'
-import handleError from '../utils/handleerror'
+import { handleError } from '../utils'
 
 const song = Router()
 

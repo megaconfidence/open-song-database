@@ -1,9 +1,8 @@
 import models from '../db'
 import { nanoid } from 'nanoid'
-import mail from '../utils/mail'
 import { Router } from 'express'
 import { isEmail } from 'validator'
-import handleError from '../utils/handleerror'
+import { mail, handleError } from '../utils'
 
 const join = Router()
 
@@ -15,7 +14,7 @@ join.post(
       const data = { email, firstname, lastname, token: nanoid() }
       const user = await models.User.join(data)
       const mailId = await mail(user)
-     
+
       console.log(`mail sent: ${mailId}`)
       return res.send(user)
     }
