@@ -28,7 +28,8 @@ const User = new mongoose.Schema({
   type: {
     type: String,
     required: true,
-    enum: ['free', 'patron']
+    default: 'free',
+    enum: ['free', 'patron'],
   },
   createdAt: { type: Date, default: Date.now }
 })
