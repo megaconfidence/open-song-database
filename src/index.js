@@ -5,8 +5,8 @@ const start = async () => {
   try {
     await connect()
     app()
-  } catch (e) {
-    console.error(e)
+  } catch (err) {
+    console.log(err)
   }
 }
 

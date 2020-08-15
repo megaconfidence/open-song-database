@@ -5,6 +5,7 @@ import routes from './routes'
 import { PORT } from './config'
 import { validate, join } from './auth'
 import { json, urlencoded } from 'body-parser'
+import { handleError, analytics } from './utils'
 import mongoSanitize from 'express-mongo-sanitize'
 
 const app = express()
@@ -14,17 +15,18 @@ app.use(json())
 app.use(morgan('dev'))
 app.use(mongoSanitize())
 app.use(urlencoded({ extended: true }))
+app.use(analytics)
 
-// Test if server is running
-app.get('/', (req, res) => {
-  res.json({ ok: true })
-})
+app.get(
+  '/',
+  handleError(async (req, res) => res.json({ ok: true })) // Test if server is running
+)
 
 app.use('/join', join)
 app.use('/api/:token', validate, routes)
 
 app.use((err, req, res, next) => {
-  console.error(err.stack)
+  console.log(err.stack)
   return res.status(500).end()
 })
 

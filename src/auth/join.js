@@ -16,7 +16,7 @@ join.post(
       const mailId = await mail(user)
 
       console.log(`mail sent: ${mailId}`)
-      return res.send(user)
+      return res.send({ email: user.email })
     }
     return res.status(400).send('Invalid credentials')
   })
