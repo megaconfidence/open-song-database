@@ -2,7 +2,7 @@
 Welcome to the Open Song Database with over 11 million songs 🎉🎉🎉
 
 ## Docs
-If you would like to test out the API endpoints with the production server replace all entries of `localhost:4000` as stated in this doc with `osdbapi.com`. If however you would like to run a local server you need to setup your local database with the test data set
+If you would like to test out the API endpoints with the production server replace all entries of `localhost:4000` as stated in this doc with `osdbapi.com`. If however you would like to run a local server you need to setup your local database with the demo data set
 
 ### Generating API Token
 To create a user account send a `POST` request to `localhost:4000/join` with the following body
