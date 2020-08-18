@@ -19,7 +19,7 @@ app.use(analytics)
 
 app.get(
   '/',
-  handleError(async (req, res) => res.json({ isWorking: true })) // Test if server is running
+  handleError(async (req, res) => res.json({ isWorking: true, docs: 'https://bit.ly/osdbapi-docs' })) // Test if server is running
 )
 
 app.use('/join', join)
