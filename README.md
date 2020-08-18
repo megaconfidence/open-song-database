@@ -16,6 +16,41 @@ To create a user account send a `POST` request to `localhost:4000/join` with the
 An email would be sent which contains the API `TOKEN`
 
 
+### Artist Search
+Make the following `GET` request to perform an artist search
+```
+localhost:4000/api/<your-api-token>/search/artist?query=<artist-name>&limit=<number-of-search-results-to-return>
+```
+An array of matching artists excluding their albums and song
+
+
+### Album Search
+To search for albums make the following `GET` request to this endpoint
+```
+localhost:4000/api/<your-api-token>/search/album?query=<album-name>&limit=<number-of-search-results-to-return>
+```
+This above returns an array of album metadata. Please note that the songs are not returned
+
+
+### Song Search
+Send the following `GET` request to search for a song
+```
+localhost:4000/api/<your-api-token>/search/song?query=<song-name>&limit=<number-of-search-results-to-return>
+```
+The above request returns an array of songs sorted by best match
+
+
+### Paging Albums
+You can page through the entire albums in the database by sending a `GET` request to this endpoint
+```
+localhost:4000/api/<your-api-token>/album?page=<page-number>&limit=<number-of-albums-to-return>
+```
+Please note that the above request does not return the song data in each album, it only returns an array of album with their metadata. To return an array of albums with their songs, make a request to this endpoint
+```
+localhost:4000/api/<your-api-token>/album/song?page=<page-number>&limit=<number-of-albums-to-return>
+```
+
+
 ### Get Artist Data
 To get artist data, which includes albums and songs send the following `GET` request
 
@@ -53,39 +88,6 @@ To get the data for a particular song send the following `GET` request
 ```
 localhost:4000/api/<your-api-token>/song/<song-id>/
 ```
-
-### Paging Albums
-You can page through the entire albums in the database by sending a `GET` request to this endpoint
-```
-localhost:4000/api/<your-api-token>/album?page=<page-number>&limit=<number-of-albums-to-return>
-```
-Please note that the above request does not return the song data in each album, it only returns an array of album with their metadata. To return an array of albums with their songs, make a request to this endpoint
-```
-localhost:4000/api/<your-api-token>/album/song?page=<page-number>&limit=<number-of-albums-to-return>
-```
-
-### Artist Search
-Make the following `GET` request to perform an album search
-```
-localhost:4000/api/<your-api-token>/search/artist?query=<album-name>&limit=<number-of-search-results-to-return>
-```
-An array of matching artists excluding their albums and song
-
-
-### Album Search
-To search for albums make the following `GET` request to this endpoint
-```
-localhost:4000/api/<your-api-token>/search/album?query=<album-name>&limit=<number-of-search-results-to-return>
-```
-This above returns an array of album metadata. Please note that the songs are not returned
-
-
-### Song Search
-Send the following `GET` request to search for a song
-```
-localhost:4000/api/<your-api-token>/search/song?query=<song-name>&limit=<number-of-search-results-to-return>
-```
-The above request returns an array of songs sorted by best match
 
 
 ### Miscellaneous Notes
