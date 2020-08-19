@@ -1,4 +1,5 @@
 import cors from 'cors'
+import path from 'path'
 import morgan from 'morgan'
 import express from 'express'
 import routes from './routes'
@@ -17,11 +18,7 @@ app.use(mongoSanitize())
 app.use(urlencoded({ extended: true }))
 app.use(analytics)
 
-app.get(
-  '/',
-  handleError(async (req, res) => res.json({ isWorking: true, docs: 'https://bit.ly/osdbapi-docs' })) // Test if server is running
-)
-
+app.use('/', express.static(path.join(__dirname, 'html')))
 app.use('/join', join)
 app.use('/api/:token', validate, routes)
 
