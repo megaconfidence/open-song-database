@@ -4,7 +4,7 @@ title: Open Song Database
 permalink: /index
 ---
 # open-song-database
-Welcome to the Open Song Database API with over 11 million songs 🎉🎉🎉
+Welcome to the Open Song Database API with over 11 million songs 🎉 🎉 🎉
 
 ## Docs
 If you would like to test out the API endpoints with a local server replace all entries of `https://osdbapi.com` as stated in this doc with `localhost:4000` (Running a local server requires setting up a local database with demo data set)

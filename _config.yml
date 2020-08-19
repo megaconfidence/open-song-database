@@ -10,13 +10,11 @@ github_username:  cokoghenun
 # Build settings
 theme: jekyll-theme-leap-day
 github:
-  repository_name: open-song-database
+  repository_name: Open Song Database
   project_tagline: Welcome to the Open Song Database API
   repository_url: https://github.com/cokoghenun/open-song-database
   owner_url: https://github.com/cokoghenun
   owner_name: cokoghenun
-include:
-  - src/html
 exclude:
   - .sass-cache/
   - .jekyll-cache/
@@ -29,13 +27,7 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
   - dist/
-  - src/auth/
-  - src/db/
-  - src/routes/
-  - src/utils/
-  - src/app.js
-  - src/config.js
-  - src/index.js
+  - src/
   - nodemon.json
   - package.json
   - yarn.lock

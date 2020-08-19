@@ -21,6 +21,7 @@ app.use(analytics)
 app.use('/', express.static(path.join(__dirname, 'html')))
 app.use('/join', join)
 app.use('/api/:token', validate, routes)
+app.use('*', express.static(path.join(__dirname, 'html')))
 
 app.use((err, req, res, next) => {
   console.log(err.stack)
