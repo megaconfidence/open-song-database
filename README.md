@@ -1,8 +1,3 @@
----
-layout: default
-title: Open Song Database
-permalink: /index
----
 # open-song-database
 Welcome to the Open Song Database API with over 11 million songs 🎉 🎉 🎉
 
