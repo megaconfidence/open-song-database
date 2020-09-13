@@ -10,7 +10,7 @@ const typeDefs = `
   }
 
   type Album {
-    _id: ID
+    id: ID
     url: String
     name: String
     year: String
@@ -21,18 +21,18 @@ const typeDefs = `
   }
 
   type Artist {
-    _id: ID
+    id: ID
     name: String
     album: [Album]
   }
 
   type Genre {
-    _id: ID
+    id: ID
     name: String
   }
 
   type Song {
-    _id: ID
+    id: ID
     url: String
     album: Album
     name: String
@@ -42,9 +42,9 @@ const typeDefs = `
   }
 
   type Query {
-    song(_id: ID!): Song!
-    album(_id: ID!): Album!
-    artist(_id: ID!): Artist!
+    song(id: ID!): Song!
+    album(id: ID!): Album!
+    artist(id: ID!): Artist!
     albums(input: PageInput!): [Album]!
     searchSong(input: SearchInput!): [Song]!
     searchAlbum(input: SearchInput!): [Album]!

@@ -4,7 +4,7 @@ const pupData = [
   { path: 'artist', select: 'name' },
 ]
 
-const createModel = (model) => {
+const crud = (model) => {
   return {
     async page(page = 1, limit = 1) {
       return await model
@@ -12,18 +12,20 @@ const createModel = (model) => {
         .skip(page * limit - limit)
         .limit(limit)
         .populate(pupData)
-        .lean()
+        .lean({ virtuals: true })
         .exec()
     },
     async findMany(filter) {
       return await model
         .find(filter, excludeFields)
         .populate(pupData)
-        .lean()
+        .lean({ virtuals: true })
         .exec()
     },
     async join(data) {
-      const user = await this.findOne({ email: data.email }).lean().exec()
+      const user = await this.findOne({ email: data.email })
+        .lean({ virtuals: true })
+        .exec()
       if (!user) {
         return await model.create(data)
       }
@@ -41,7 +43,7 @@ const createModel = (model) => {
         .populate(pupData)
         .select(excludeFields)
         .sort({ score: { $meta: 'textScore' } })
-        .lean()
+        .lean({ virtuals: true })
         .exec()
     },
     async findOne(id) {
@@ -49,16 +51,16 @@ const createModel = (model) => {
         return await model
           .findById(id, excludeFields)
           .populate(pupData)
-          .lean()
+          .lean({ virtuals: true })
           .exec()
       }
       return await model
         .findOne(id, excludeFields)
         .populate(pupData)
-        .lean()
+        .lean({ virtuals: true })
         .exec()
     },
   }
 }
 
-export default createModel
+export default crud

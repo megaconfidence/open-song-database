@@ -1485,7 +1485,7 @@ array-unique@^0.3.2:
   resolved "https://registry.yarnpkg.com/array-unique/-/array-unique-0.3.2.tgz#a894b75d4bc4f6cd679ef3244a9fd8f46ae2d428"
   integrity sha1-qJS3XUvE9s1nnvMkSp/Y9Gri1Cg=
 
-array.prototype.flat@^1.2.3:
+array.prototype.flat@1.2.3, array.prototype.flat@^1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/array.prototype.flat/-/array.prototype.flat-1.2.3.tgz#0de82b426b0318dbfdb940089e38b043d37f6c7b"
   integrity sha512-gBlRZV0VSmfPIeWfuuy56XZMvbVfbEUnOXUvt3F/eUUUSyzlgLxhEX4YAEpxNAogRGehPSnfXyPtYyKAhkzQhQ==
@@ -3933,7 +3933,7 @@ lodash.flatten@^4.4.0:
   resolved "https://registry.yarnpkg.com/lodash.flatten/-/lodash.flatten-4.4.0.tgz#f31c22225a9632d2bbf8e4addbef240aa765a61f"
   integrity sha1-8xwiIlqWMtK7+OSt2+8kCqdlph8=
 
-lodash@4.17.20, lodash@^4.17.14, lodash@^4.17.19, lodash@^4.17.4:
+lodash@4.17.20, lodash@^4.17.14, lodash@^4.17.19, lodash@^4.17.4, lodash@~4.17.11:
   version "4.17.20"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
   integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
@@ -4103,6 +4103,14 @@ mongodb@3.6.0:
   optionalDependencies:
     saslprep "^1.0.0"
 
+mongoose-lean-virtuals@^0.6.9:
+  version "0.6.9"
+  resolved "https://registry.yarnpkg.com/mongoose-lean-virtuals/-/mongoose-lean-virtuals-0.6.9.tgz#becf54dc34479b094832e2e6b7bc51ed37b29f76"
+  integrity sha512-0waf+VBRig3U3ugP1/WgPrO8EEA4rClfH10G6dOAwiTVsfAZanrNun9ptOpyitWW8v/8sIqX6vDslib+qGRHKg==
+  dependencies:
+    array.prototype.flat "1.2.3"
+    mpath "0.5.x"
+
 mongoose-legacy-pluralize@1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/mongoose-legacy-pluralize/-/mongoose-legacy-pluralize-1.0.2.tgz#3ba9f91fa507b5186d399fb40854bff18fb563e4"
@@ -4135,6 +4143,11 @@ morgan@^1.10.0:
     depd "~2.0.0"
     on-finished "~2.3.0"
     on-headers "~1.0.2"
+
+mpath@0.5.x:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/mpath/-/mpath-0.5.2.tgz#b1eac586dffb5175d2f51ca9aacba35d9940dd41"
+  integrity sha512-NOeCoW6AYc3hLi30npe7uzbD9b4FQZKH40YKABUCCvaKKL5agj6YzvHoNx8jQpDMNPgIa5bvSZQbQpWBAVD0Kw==
 
 mpath@0.7.0:
   version "0.7.0"
@@ -4367,6 +4380,13 @@ object.values@^1.1.1:
     es-abstract "^1.17.0-next.1"
     function-bind "^1.1.1"
     has "^1.0.3"
+
+omit-deep-lodash@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/omit-deep-lodash/-/omit-deep-lodash-1.1.4.tgz#7f34abef077047f6aeb6968603bb03d4dbdba089"
+  integrity sha512-5ge7dBDVDYEU8YiqYlKxjsVesB3wqXejgluGx+9Xd8+PJH7VEEK9D4Pqpq7VE0ZtQh9HBz0LMNRk1BA3+bsd4Q==
+  dependencies:
+    lodash "~4.17.11"
 
 on-finished@~2.3.0:
   version "2.3.0"

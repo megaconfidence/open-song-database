@@ -43,7 +43,7 @@ server.use((err, req, res, next) => {
 
 export default () => {
   server.listen(PORT, () => {
-    console.log(`🚀 REST server ready at http://localhost:${PORT}/`)
-    console.log(`🚀 GRAPHQL server ready at http://localhost:${PORT}/graphql`)
+    console.log(`🚀 REST server at http://localhost:${PORT}/`)
+    console.log(`🚀 GRAPHQL server at http://localhost:${PORT}/graphql`)
   })
 }
