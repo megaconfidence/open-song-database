@@ -1,4 +1,4 @@
-import join from '../utils/join'
+import token from './token'
 import validate from './validate'
 
-export { join, validate }
+export { token, validate }

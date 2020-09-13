@@ -22,7 +22,7 @@ const crud = (model) => {
         .lean({ virtuals: true })
         .exec()
     },
-    async join(data) {
+    async findOrCreate(data) {
       const user = await this.findOne({ email: data.email })
         .lean({ virtuals: true })
         .exec()

@@ -1,25 +1,22 @@
-import models from '../db'
 import { nanoid } from 'nanoid'
 import { Router } from 'express'
 import { isEmail } from 'validator'
-import { mail, handleError } from '.'
+import { mail, handleError, send } from '../utils'
 
-const join = Router()
+const token = Router()
 
-join.post(
+token.post(
   '/',
   handleError(async (req, res, next) => {
     const { email, firstname, lastname } = req.body
     if (isEmail(email) && firstname && lastname) {
       const data = { email, firstname, lastname, token: nanoid() }
-      const user = await models.User.join(data)
+      const user = await req.User.findOrCreate(data)
       const mailId = await mail(user)
-
-      console.log(`mail sent: ${mailId}`)
-      return res.send({ email: user.email })
+      return send(res, { id: mailId, email: user.email })
     }
     return res.status(400).send('Invalid credentials')
   })
 )
 
-export default join
+export default token

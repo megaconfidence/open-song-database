@@ -6,7 +6,7 @@ import express from 'express'
 import schema from './graphql'
 import { PORT } from './config'
 import analytics from './analytics'
-import { validate, join } from './auth'
+import { validate, token } from './auth'
 import depthLimit from 'graphql-depth-limit'
 import { graphqlHTTP } from 'express-graphql'
 import { json, urlencoded } from 'body-parser'
@@ -34,7 +34,7 @@ server.use(mongoSanitize())
 server.use(urlencoded({ extended: true }))
 server.use(analytics)
 
-server.use('/join', join)
+server.use('/token', modelfy, token)
 server.use('/rest/:token', validate, modelfy, routes)
 server.use('/graphql/:token', validate, graphqlHTTP(gqlConfig))
 server.get('*', (_, res) => res.redirect('https://www.osdbapi.com'))
