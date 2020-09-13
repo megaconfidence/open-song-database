@@ -11,6 +11,18 @@ import { graphqlHTTP } from 'express-graphql'
 import { json, urlencoded } from 'body-parser'
 import mongoSanitize from 'express-mongo-sanitize'
 
+const modelfy = (req, _, next) => {
+  for (const model in models) {
+    req[model] = models[model]
+  }
+  return next()
+}
+const gqlConfig = {
+  schema,
+  graphiql: true,
+  context: { ...models },
+}
+
 const server = express()
 
 server.use(cors())
@@ -21,16 +33,8 @@ server.use(urlencoded({ extended: true }))
 server.use(analytics)
 
 server.use('/join', join)
-server.use('/rest/:token', validate, routes)
-server.use(
-  '/graphql/:token',
-  validate,
-  graphqlHTTP({
-    schema,
-    graphiql: true,
-    context: { ...models },
-  })
-)
+server.use('/rest/:token', validate, modelfy, routes)
+server.use('/graphql/:token', validate, graphqlHTTP(gqlConfig))
 
 server.get('*', (_, res) => {
   res.redirect('https://www.osdbapi.com')

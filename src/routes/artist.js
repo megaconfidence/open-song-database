@@ -1,4 +1,3 @@
-import models from '../db'
 import { Router } from 'express'
 import { asyncMap, handleError, send } from '../utils'
 
@@ -7,7 +6,7 @@ const artist = Router()
 artist.get(
   '/:id',
   handleError(async (req, res) => {
-    const artist = await models.Artist.findOne(req.params.id)
+    const artist = await req.Artist.findOne(req.params.id)
     return send(res, artist)
   })
 )
@@ -15,8 +14,8 @@ artist.get(
 artist.get(
   '/:id/album',
   handleError(async (req, res) => {
-    const artist = await models.Artist.findOne(req.params.id)
-    const album = await models.Album.findMany({ artist })
+    const artist = await req.Artist.findOne(req.params.id)
+    const album = await req.Album.findMany({ artist })
     return send(res, { ...artist, album })
   })
 )
@@ -24,10 +23,10 @@ artist.get(
 artist.get(
   '/:id/album/song',
   handleError(async (req, res) => {
-    const artist = await models.Artist.findOne(req.params.id)
-    const album = await models.Album.findMany({ artist })
+    const artist = await req.Artist.findOne(req.params.id)
+    const album = await req.Album.findMany({ artist })
     const album_song = await asyncMap(album, async (a) => {
-      const song = await models.Song.findMany({ album: a._id })
+      const song = await req.Song.findMany({ album: a._id })
       return { ...a, song }
     })
     return send(res, { ...artist, album: album_song })
