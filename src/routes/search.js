@@ -9,7 +9,7 @@ search.get(
   handleError(async (req, res) => {
     const [_, limit, query] = getQuery(req.query)
     const song = await models.Song.search(query, limit)
-    return res.send(song)
+    return res.json({ data: song })
   })
 )
 
@@ -18,7 +18,7 @@ search.get(
   handleError(async (req, res) => {
     const [_, limit, query] = getQuery(req.query)
     const album = await models.Album.search(query, limit)
-    return res.send(album)
+    return res.json({ data: album })
   })
 )
 
@@ -27,7 +27,7 @@ search.get(
   handleError(async (req, res) => {
     const [_, limit, query] = getQuery(req.query)
     const artist = await models.Artist.search(query, limit)
-    return res.send(artist)
+    return res.json({ data: artist })
   })
 )
 

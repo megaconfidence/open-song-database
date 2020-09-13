@@ -8,7 +8,7 @@ artist.get(
   '/:id',
   handleError(async (req, res) => {
     const artist = await models.Artist.findOne(req.params.id)
-    return res.send(artist)
+    return res.json({ data: artist })
   })
 )
 
@@ -16,8 +16,8 @@ artist.get(
   '/:id/album',
   handleError(async (req, res) => {
     const artist = await models.Artist.findOne(req.params.id)
-    const album = await models.Album.findMany({ artist })
-    return res.send({ ...artist, album })
+    const album = await s.Album.findMany({ artist })
+    return res.json({ data: { ...artist, album } })
   })
 )
 
@@ -26,11 +26,11 @@ artist.get(
   handleError(async (req, res) => {
     const artist = await models.Artist.findOne(req.params.id)
     const album = await models.Album.findMany({ artist })
-    const album_song = await asyncMap(album, async a => {
+    const album_song = await asyncMap(album, async (a) => {
       const song = await models.Song.findMany({ album: a._id })
       return { ...a, song }
     })
-    return res.send({ ...artist, album: album_song })
+    return res.json({ data: { ...artist, album: album_song } })
   })
 )
 

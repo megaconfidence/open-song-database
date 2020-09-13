@@ -8,7 +8,7 @@ song.get(
   '/:id',
   handleError(async (req, res) => {
     const song = await models.Song.findOne(req.params.id)
-    return res.send(song)
+    return res.json({ data: song })
   })
 )
 

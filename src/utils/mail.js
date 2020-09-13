@@ -3,7 +3,7 @@ import { EMAIL_ADDRESS, EMAIL_PASSWORD } from '../config'
 
 const mail = async ({ firstname, token, email }) => {
   try {
-    const capitalize = s => {
+    const capitalize = (s) => {
       if (typeof s !== 'string') return ''
       return s.charAt(0).toUpperCase() + s.slice(1)
     }
@@ -12,8 +12,8 @@ const mail = async ({ firstname, token, email }) => {
       service: 'gmail',
       auth: {
         user: EMAIL_ADDRESS,
-        pass: EMAIL_PASSWORD
-      }
+        pass: EMAIL_PASSWORD,
+      },
     })
 
     const info = await transporter.sendMail({
@@ -40,12 +40,12 @@ const mail = async ({ firstname, token, email }) => {
       <br>
       <p>(If you did not make this request please disregard this email)</p>
       <p>&copy; ${new Date().getFullYear()} osdbapi.com. All rights reserved.</p>
-      `
+      `,
     })
 
     return info.messageId
-  } catch (err) {
-    console.log(err)
+  } catch (error) {
+    console.log({ error })
   }
 }
 

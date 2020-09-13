@@ -1,5 +1,5 @@
 import fetch from 'node-fetch'
-import { GTAG_ID } from '../config'
+import { GTAG_ID } from './config'
 
 const analytics = async ({ url }, res, next) => {
   if (url.startsWith('/api')) {
@@ -14,8 +14,8 @@ const analytics = async ({ url }, res, next) => {
           },
         }
       )
-    } catch (err) {
-      console.log(err)
+    } catch (error) {
+      console.log({error})
     }
   }
   return next()

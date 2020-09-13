@@ -1,12 +1,12 @@
-import app from './app'
+import server from './server'
 import connect from './db/connect'
 
 const start = async () => {
   try {
     await connect()
-    app()
-  } catch (err) {
-    console.log(err)
+    server()
+  } catch (error) {
+    console.log({ error })
   }
 }
 

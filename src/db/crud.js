@@ -1,10 +1,10 @@
 const excludeFields = '-createdAt -__v -playId -url'
 const pupData = [
   { path: 'genre', select: 'name' },
-  { path: 'artist', select: 'name' }
+  { path: 'artist', select: 'name' },
 ]
 
-const createModel = model => {
+const createModel = (model) => {
   return {
     async page(page = 1, limit = 1) {
       return await model
@@ -13,15 +13,17 @@ const createModel = model => {
         .limit(limit)
         .populate(pupData)
         .lean()
+        .exec()
     },
     async findMany(filter) {
       return await model
         .find(filter, excludeFields)
         .populate(pupData)
         .lean()
+        .exec()
     },
     async join(data) {
-      const user = await this.findOne({ email: data.email })
+      const user = await this.findOne({ email: data.email }).lean().exec()
       if (!user) {
         return await model.create(data)
       }
@@ -32,13 +34,15 @@ const createModel = model => {
         .find(
           { $text: { $search: query } },
           {
-            score: { $meta: 'textScore' }
+            score: { $meta: 'textScore' },
           }
         )
         .limit(limit)
         .populate(pupData)
         .select(excludeFields)
         .sort({ score: { $meta: 'textScore' } })
+        .lean()
+        .exec()
     },
     async findOne(id) {
       if (typeof id === 'string') {
@@ -46,12 +50,14 @@ const createModel = model => {
           .findById(id, excludeFields)
           .populate(pupData)
           .lean()
+          .exec()
       }
       return await model
         .findOne(id, excludeFields)
         .populate(pupData)
         .lean()
-    }
+        .exec()
+    },
   }
 }
 

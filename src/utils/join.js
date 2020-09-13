@@ -2,7 +2,7 @@ import models from '../db'
 import { nanoid } from 'nanoid'
 import { Router } from 'express'
 import { isEmail } from 'validator'
-import { mail, handleError } from '../utils'
+import { mail, handleError } from '.'
 
 const join = Router()
 
