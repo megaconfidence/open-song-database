@@ -7,6 +7,7 @@ import schema from './graphql'
 import { PORT } from './config'
 import analytics from './analytics'
 import { validate, join } from './auth'
+import depthLimit from 'graphql-depth-limit'
 import { graphqlHTTP } from 'express-graphql'
 import { json, urlencoded } from 'body-parser'
 import mongoSanitize from 'express-mongo-sanitize'
@@ -21,6 +22,7 @@ const gqlConfig = {
   schema,
   graphiql: true,
   context: { ...models },
+  validationRules: [depthLimit(10)],
 }
 
 const server = express()
@@ -35,12 +37,9 @@ server.use(analytics)
 server.use('/join', join)
 server.use('/rest/:token', validate, modelfy, routes)
 server.use('/graphql/:token', validate, graphqlHTTP(gqlConfig))
+server.get('*', (_, res) => res.redirect('https://www.osdbapi.com'))
 
-server.get('*', (_, res) => {
-  res.redirect('https://www.osdbapi.com')
-})
-
-server.use((err, req, res, next) => {
+server.use((err, _, res, __) => {
   console.log({ error: err.stack })
   return res.status(500).end()
 })

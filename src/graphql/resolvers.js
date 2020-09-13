@@ -1,9 +1,7 @@
 const resolvers = {
   Query: {
-    async album(_, { id }, { Album }) {
-      const dd = await Album.findOne(id)
-      console.log({gql: dd})
-      return  dd
+    album(_, { id }, { Album }) {
+      return Album.findOne(id)
     },
     albums(_, { input: { page, limit } }, { Album }) {
       return Album.page(page, limit)
@@ -11,7 +9,7 @@ const resolvers = {
     artist(_, { id }, { Artist }) {
       return Artist.findOne(id)
     },
-    async song(_, { id }, { Song }) {
+    song(_, { id }, { Song }) {
       return Song.findOne(id)
     },
     searchSong(_, { input: { query, limit } }, { Song }) {
