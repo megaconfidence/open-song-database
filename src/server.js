@@ -34,10 +34,10 @@ server.use(mongoSanitize())
 server.use(urlencoded({ extended: true }))
 server.use(analytics)
 
+server.get('/', (_, res) => res.redirect('https://www.osdbapi.com'))
 server.use('/token', modelfy, token)
 server.use('/rest/:token', validate, modelfy, routes)
 server.use('/graphql/:token', validate, graphqlHTTP(gqlConfig))
-server.get('*', (_, res) => res.redirect('https://www.osdbapi.com'))
 
 server.use((err, _, res, __) => {
   console.log({ error: err.stack })
