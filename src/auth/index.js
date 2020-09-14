@@ -1,4 +1,4 @@
-import token from './token'
+import key from './key'
 import validate from './validate'
 
-export { token, validate }
+export { key, validate }

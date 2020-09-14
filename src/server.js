@@ -6,7 +6,7 @@ import express from 'express'
 import schema from './graphql'
 import { PORT } from './config'
 import analytics from './analytics'
-import { validate, token } from './auth'
+import { validate, key } from './auth'
 import depthLimit from 'graphql-depth-limit'
 import { graphqlHTTP } from 'express-graphql'
 import { json, urlencoded } from 'body-parser'
@@ -35,9 +35,9 @@ server.use(urlencoded({ extended: true }))
 server.use(analytics)
 
 server.get('/', (_, res) => res.redirect('https://www.osdbapi.com'))
-server.use('/token', modelfy, token)
-server.use('/rest/:token', validate, modelfy, routes)
-server.use('/graphql/:token', validate, graphqlHTTP(gqlConfig))
+server.use('/key', modelfy, key)
+server.use('/rest/:key', validate, modelfy, routes)
+server.use('/graphql/:key', validate, graphqlHTTP(gqlConfig))
 
 server.use((err, _, res, __) => {
   console.log({ error: err.stack })

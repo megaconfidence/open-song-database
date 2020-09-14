@@ -21,7 +21,7 @@ const User = new mongoose.Schema({
     required: true,
     lowercase: true,
   },
-  token: {
+  key: {
     unique: true,
     type: String,
     required: true,

@@ -3,14 +3,14 @@ import { Router } from 'express'
 import { isEmail } from 'validator'
 import { mail, handleError, send } from '../utils'
 
-const token = Router()
+const key = Router()
 
-token.post(
+key.post(
   '/',
   handleError(async (req, res, next) => {
     const { email, firstname, lastname } = req.body
     if (isEmail(email) && firstname && lastname) {
-      const data = { email, firstname, lastname, token: nanoid() }
+      const data = { email, firstname, lastname, key: nanoid() }
       const user = await req.User.findOrCreate({ email }, data)
       const mailId = await mail(user)
       return send(res, { id: mailId, email: user.email })
@@ -19,4 +19,4 @@ token.post(
   })
 )
 
-export default token
+export default key
