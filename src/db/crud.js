@@ -22,10 +22,8 @@ const crud = (model) => {
         .lean({ virtuals: true })
         .exec()
     },
-    async findOrCreate(data) {
-      const user = await this.findOne({ email: data.email })
-        .lean({ virtuals: true })
-        .exec()
+    async findOrCreate(filter, data) {
+      const user = await model.findOne(filter).lean({ virtuals: true }).exec()
       if (!user) {
         return await model.create(data)
       }
@@ -46,16 +44,16 @@ const crud = (model) => {
         .lean({ virtuals: true })
         .exec()
     },
-    async findOne(id) {
-      if (typeof id === 'string') {
+    async findOne(filter) {
+      if (typeof filter === 'string') {
         return await model
-          .findById(id, excludeFields)
+          .findById(filter, excludeFields)
           .populate(pupData)
           .lean({ virtuals: true })
           .exec()
       }
       return await model
-        .findOne(id, excludeFields)
+        .findOne(filter, excludeFields)
         .populate(pupData)
         .lean({ virtuals: true })
         .exec()

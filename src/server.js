@@ -22,7 +22,7 @@ const gqlConfig = {
   schema,
   graphiql: true,
   context: { ...models },
-  validationRules: [depthLimit(10)],
+  validationRules: [depthLimit(5)],
 }
 
 const server = express()

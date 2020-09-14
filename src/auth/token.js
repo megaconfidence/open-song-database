@@ -11,7 +11,7 @@ token.post(
     const { email, firstname, lastname } = req.body
     if (isEmail(email) && firstname && lastname) {
       const data = { email, firstname, lastname, token: nanoid() }
-      const user = await req.User.findOrCreate(data)
+      const user = await req.User.findOrCreate({ email }, data)
       const mailId = await mail(user)
       return send(res, { id: mailId, email: user.email })
     }

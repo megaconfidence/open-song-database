@@ -11,7 +11,6 @@ const typeDefs = `
 
   type Album {
     id: ID
-    url: String
     name: String
     year: String
     song: [Song]
@@ -33,10 +32,8 @@ const typeDefs = `
 
   type Song {
     id: ID
-    url: String
     album: Album
     name: String
-    playId: String
     duration: String
     artist: [Artist]!
   }
