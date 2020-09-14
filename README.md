@@ -4,7 +4,7 @@ Welcome to the Open Song Database API with over 11 million songs 🎉 🎉 🎉
 ## Docs
 If you would like to test out the API endpoints with a local server replace all entries of `https://osdbapi.com` as stated in this doc with `localhost:4000` (Running a local server requires setting up a local database with demo data set)
 
-### Generating API Token
+### Generating API Key
 To create a user account send a `POST` request to `https://osdbapi.com/join` with the following body
 ```json
 {
@@ -13,7 +13,7 @@ To create a user account send a `POST` request to `https://osdbapi.com/join` wit
 	"lastname": "Doe"
 }
 ```
-An email would be sent which contains the API `TOKEN`
+An email would be sent which contains the API `Key`
 
 
 ### Artist Search
@@ -91,7 +91,7 @@ https://osdbapi.com/api/<your-api-key>/song/<song-id>/
 
 
 ### Miscellaneous Notes
-1. API `TOKEN` is sent to the registered email address
+1. API `Key` is sent to the registered email address
 2. The maximum number for the `limit` query parameter is 20. Any value greater than this defaults to 20
 3. The maximum number of request per IP is 1000 within a 24 hour period
 

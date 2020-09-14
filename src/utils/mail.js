@@ -28,7 +28,7 @@ const mail = async ({ firstname, key, email }) => {
       html,
       to: email,
       from: EMAIL_ADDRESS,
-      subject: 'OSDB API Token',
+      subject: 'OSDB API Key',
     })
 
     return info.messageId
