@@ -21,6 +21,12 @@ const User = new mongoose.Schema({
     required: true,
     lowercase: true,
   },
+  use: {
+    trim: true,
+    type: String,
+    required: true,
+    maxlength: 150,
+  },
   key: {
     unique: true,
     type: String,

@@ -8,9 +8,9 @@ const key = Router()
 key.post(
   '/',
   handleError(async (req, res, next) => {
-    const { email, firstname, lastname } = req.body
-    if (isEmail(email) && firstname && lastname) {
-      const data = { email, firstname, lastname, key: nanoid() }
+    const { email, firstname, lastname, use } = req.body
+    if (isEmail(email) && firstname && lastname && use) {
+      const data = { email, firstname, lastname, use, key: nanoid() }
       const user = await req.User.findOrCreate({ email }, data)
       const mailId = await mail(user)
       return send(res, { id: mailId, email: user.email })
