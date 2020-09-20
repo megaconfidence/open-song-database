@@ -32,8 +32,8 @@
     "morgan": "^1.10.0",
     "nanoid": "^3.1.12",
     "node-fetch": "^2.6.1",
-    "nodemailer": "^6.4.11",
     "omit-deep-lodash": "^1.1.4",
+    "postmark": "^2.5.5",
     "rate-limit-redis": "^2.0.0",
     "validator": "^13.1.1"
   },

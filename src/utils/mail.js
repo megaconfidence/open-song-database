@@ -1,6 +1,7 @@
-import nodemailer from 'nodemailer'
-import mailtemplate from './mailtemplate'
-import { EMAIL_ADDRESS, EMAIL_PASSWORD } from '../config'
+import { ServerClient } from 'postmark'
+import { POSTMARK_TOKEN } from '../config'
+
+const pmClient = new ServerClient(POSTMARK_TOKEN)
 
 const mail = async ({ firstname, key, email }) => {
   try {
@@ -9,29 +10,17 @@ const mail = async ({ firstname, key, email }) => {
       return s.charAt(0).toUpperCase() + s.slice(1)
     }
 
-    const [text, html] = mailtemplate(
-      capitalize(firstname),
-      key,
-      new Date().getFullYear()
-    )
-
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: EMAIL_ADDRESS,
-        pass: EMAIL_PASSWORD,
+    const { Message } = await pmClient.sendEmailWithTemplate({
+      To: email,
+      TemplateAlias: 'api-key',
+      From: 'support@osdbapi.com',
+      TemplateModel: {
+        api_key: key,
+        first_name: capitalize(firstname),
       },
     })
 
-    const info = await transporter.sendMail({
-      text,
-      html,
-      to: email,
-      from: EMAIL_ADDRESS,
-      subject: 'OSDB API Key',
-    })
-
-    return info.messageId
+    return Message
   } catch (error) {
     console.log({ error })
   }
