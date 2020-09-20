@@ -13,6 +13,7 @@ key.post(
       const data = { email, firstname, lastname, use, key: nanoid() }
       const user = await req.User.findOrCreate({ email }, data)
       const mailId = await mail(user)
+      
       return send(res, { sent: mailId ? true : false, email: user.email })
     }
     return res.status(400).send('Invalid credentials')
