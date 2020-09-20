@@ -18,10 +18,11 @@ const typeDefs = `
     genre: [Genre]
     artist: [Artist]
   }
-
+  
   type Artist {
     id: ID
     name: String
+    cover: String
     album: [Album]
   }
 

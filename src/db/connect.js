@@ -1,15 +1,13 @@
 import mongoose from 'mongoose'
-import { DB_URL } from '../config'
+import { MUSIC_DB } from '../config'
 
-const connect = (url = DB_URL, opts = {}) => {
-  return mongoose.connect(url, {
-    ...opts,
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+const connect = () => {
+  return mongoose.connect(MUSIC_DB, {
     useCreateIndex: true,
-    useFindAndModify: false
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true,
   })
 }
-
 
 export default connect

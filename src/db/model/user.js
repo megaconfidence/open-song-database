@@ -1,5 +1,13 @@
 import mongoose from 'mongoose'
+import { USER_DB } from '../../config'
 import mongooseLeanVirtuals from 'mongoose-lean-virtuals'
+
+const userDB = mongoose.createConnection(USER_DB, {
+  useCreateIndex: true,
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true,
+})
 
 const User = new mongoose.Schema({
   email: {
@@ -42,4 +50,4 @@ const User = new mongoose.Schema({
 })
 
 User.plugin(mongooseLeanVirtuals)
-export default mongoose.model('user', User)
+export default userDB.model('user', User)
