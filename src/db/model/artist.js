@@ -20,5 +20,11 @@ const Artist = new mongoose.Schema({
   },
   createdAt: { type: Date, default: Date.now },
 })
+
+Artist.virtual('image').get(function () {
+  if (this.cover) return this.cover
+  return 'https://myzuka.club/images/default-upic.png'
+})
+
 Artist.plugin(mongooseLeanVirtuals)
 export default mongoose.model('artist', Artist)

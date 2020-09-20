@@ -1,7 +1,8 @@
 import omit from 'omit-deep-lodash'
 
 const send = async (res, data) => {
-  return res.json({ data: omit(data, '_id') })
+  const payload = JSON.parse(JSON.stringify(data)) // eliminamtes bson objects
+  return res.json({ data: omit(payload, ['_id', 'cover']) })
 }
 
 export default send

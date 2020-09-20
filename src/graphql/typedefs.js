@@ -14,7 +14,7 @@ const typeDefs = `
     name: String
     year: String
     song: [Song]
-    cover: String
+    image: String
     genre: [Genre]
     artist: [Artist]
   }
@@ -22,7 +22,7 @@ const typeDefs = `
   type Artist {
     id: ID
     name: String
-    cover: String
+    image: String
     album: [Album]
   }
 
@@ -36,7 +36,7 @@ const typeDefs = `
     album: Album
     name: String
     duration: String
-    artist: [Artist]!
+    artist: [Artist]
   }
 
   type Query {

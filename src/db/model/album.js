@@ -38,6 +38,12 @@ const Album = new mongoose.Schema(
   },
   { toJSON: { virtuals: true } }
 )
-Album.plugin(mongooseLeanVirtuals);
+
+Album.virtual('image').get(function () {
+  if (this.cover) return this.cover
+  return 'https://myzuka.club/images/default-upic.png'
+})
+
+Album.plugin(mongooseLeanVirtuals)
 Album.index({ artist: 1, name: 1 }, { unique: true })
 export default mongoose.model('album', Album)
