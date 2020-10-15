@@ -22,7 +22,11 @@ const Artist = new mongoose.Schema({
 })
 
 Artist.virtual('image').get(function () {
-  if (this.cover) return this.cover
+  if (this.cover) {
+    return this.cover
+      .replace('http://', 'https://')
+      .replace('myzcloud.pro', 'myzcloud.me')
+  }
   return 'https://myzuka.club/images/default-upic.png'
 })
 

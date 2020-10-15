@@ -1,102 +1,35 @@
-# open-song-database
-Welcome to the Open Song Database API with over 11 million songs 🎉 🎉 🎉
+# Open Song Database API
+
+Welcome to the Open Song Database API<br >
+Frontend repo is [here](https://github.com/cokoghenun/open-song-database).
+
+## Contributions
+
+Your contributions are highly welcomed.
 
 ## Docs
-If you would like to test out the API endpoints with a local server replace all entries of `https://osdbapi.com` as stated in this doc with `localhost:4000` (Running a local server requires setting up a local database with demo data set)
 
-### Generating API Key
-To create a user account send a `POST` request to `https://osdbapi.com/join` with the following body
-```json
-{
-	"email": "john@doe.com",
-	"firstname": "John",
-	"lastname": "Doe"
-}
-```
-An email would be sent which contains the API `Key`
+The documentation of this API can be found at [https://osdbapi.com](https://osdbapi.com/docs/)
 
+## Scripts
 
-### Artist Search
-Make the following `GET` request to perform an artist search
-```
-https://osdbapi.com/api/<your-api-key>/search/artist?query=<artist-name>&limit=<number-of-search-results-to-return>
-```
-An array of matching artists excluding their albums and song
+In the project directory, you can run:
 
+### `yarn dev`
 
-### Album Search
-To search for albums make the following `GET` request to this endpoint
-```
-https://osdbapi.com/api/<your-api-key>/search/album?query=<album-name>&limit=<number-of-search-results-to-return>
-```
-This above returns an array of album metadata. Please note that the songs are not returned
+Runs the app in the development mode on port `4000`.<br />
+`REST` endpoint is at `http://localhost:4000/rest/<your-api-key>/`.<br />
+Open `http://localhost:4000/graphql/<your-api-key>/` to view GraphiQL the browser.
 
+### `yarn build`
 
-### Song Search
-Send the following `GET` request to search for a song
-```
-https://osdbapi.com/api/<your-api-key>/search/song?query=<song-name>&limit=<number-of-search-results-to-return>
-```
-The above request returns an array of songs sorted by best match
+Builds the app for production to the `dist/` folder.<br />
+It correctly transpiles the project in production mode and optimizes the build for the best performance.
 
+## Road Map
 
-### Paging Albums
-You can page through the entire albums in the database by sending a `GET` request to this endpoint
-```
-https://osdbapi.com/api/<your-api-key>/album?page=<page-number>&limit=<number-of-albums-to-return>
-```
-Please note that the above request does not return the song data in each album, it only returns an array of album with their metadata. To return an array of albums with their songs, make a request to this endpoint
-```
-https://osdbapi.com/api/<your-api-key>/album/song?page=<page-number>&limit=<number-of-albums-to-return>
-```
-
-
-### Get Artist Data
-To get artist data, which includes albums and songs send the following `GET` request
-
-```
-https://osdbapi.com/api/<your-api-key>/artist/<artist-id>/
-```
-The above returns basic artist information only (i.e artist name)
-
-```
-https://osdbapi.com/api/<your-api-key>/artist/<artist-id>/album
-```
-The above returns both the artist basic information and an array of albums composed by the artist. This includes all relevant album metadata without the songs in the album
-
-```
-https://osdbapi.com/api/<your-api-key>/artist/<artist-id>/album/song
-```
-The above returns artist information, album metadata and the songs in each album
-
-
-### Get Album Data
-To get album data, make the following `GET` request
-
-```
-https://osdbapi.com/api/<your-api-key>/album/<album-id>/
-```
-The above returns album metadata without the songs
-```
-https://osdbapi.com/api/<your-api-key>/album/<album-id>/song
-```
-The above returns the album metadata as well as the songs in the album
-
-
-### Get Song Data
-To get the data for a particular song send the following `GET` request
-```
-https://osdbapi.com/api/<your-api-key>/song/<song-id>/
-```
-
-
-### Miscellaneous Notes
-1. API `Key` is sent to the registered email address
-2. The maximum number for the `limit` query parameter is 20. Any value greater than this defaults to 20
-3. The maximum number of request per IP is 1000 within a 24 hour period
-
-## Project Road Map
 This is the roadmap of the project for the foreseeable future:
+
 - [x] First version release
 - [ ] Add demo dataset to repo
 - [ ] Write tests
