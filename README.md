@@ -1,7 +1,7 @@
 # Open Song Database API
 
-Welcome to the Open Song Database API<br >
-Frontend repo is [here](https://github.com/cokoghenun/open-song-database).
+Welcome to the Open Song Database API.<br >
+Front-end repo is [here](https://github.com/cokoghenun/open-song-database)
 
 ## Contributions
 
