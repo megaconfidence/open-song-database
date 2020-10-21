@@ -10,7 +10,7 @@
     "dev": "nodemon --exec yarn restart",
     "restart": "clear && rimraf dist && yarn build && yarn start",
     "start": "node dist/index.js",
-    "test": "echo \"No test \""
+    "test": "echo \"No test lol\""
   },
   "dependencies": {
     "body-parser": "^1.19.0",
