@@ -1,4 +1,4 @@
-# Open Song Database API
+# Open Song Database API [![Build Status](https://travis-ci.org/cokoghenun/open-song-database-api.svg?branch=master)](https://travis-ci.org/cokoghenun/open-song-database-api)
 
 Welcome to the Open Song Database API.<br >
 Front-end repo is [here](https://github.com/cokoghenun/open-song-database)
@@ -31,6 +31,7 @@ It correctly transpiles the project in production mode and optimizes the build f
 This is the roadmap of the project for the foreseeable future:
 
 - [x] First version release
+- [x] Automatic deploy
 - [ ] Add demo dataset to repo
 - [ ] Write tests
 - [ ] Add more API endpoints
