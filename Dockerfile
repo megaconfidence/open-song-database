@@ -9,17 +9,17 @@ FROM node:erbium-buster
 
 
 # Security and housekeeping
-USER node
+USER root
 
-RUN mkdir /home/node/code
+RUN mkdir /home/root/code
 
-WORKDIR /home/node/code
+WORKDIR /home/root/code
 
-COPY --chown=node:node package.json yarn.lock ./
+COPY --chown=root:root package.json yarn.lock ./
 
 RUN yarn install --frozen-lockfile
 
-COPY --chown=node:node . .
+COPY --chown=root:root . .
 
 EXPOSE 4000
 
