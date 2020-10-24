@@ -4,8 +4,8 @@ FROM node:erbium-buster-slim
 
 
 # Adds Tini
-RUN apk add --no-cache tini
-ENTRYPOINT ["/sbin/tini", "--"]
+# RUN apk add --no-cache tini
+# ENTRYPOINT ["/sbin/tini", "--"]
 
 
 # Security and housekeeping
