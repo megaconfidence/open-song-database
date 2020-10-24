@@ -1,25 +1,24 @@
 # Uses latest node 12 LTS on alpine
-FROM node:erbium-buster
-# FROM node:erbium-alpine
+FROM node:erbium-alpine
 
 
 # Adds Tini
-# RUN apk add --no-cache tini
-# ENTRYPOINT ["/sbin/tini", "--"]
+RUN apk add --no-cache tini
+ENTRYPOINT ["/sbin/tini", "--"]
 
 
 # Security and housekeeping
-USER root
+USER node
 
-RUN mkdir /home/root/code
+RUN mkdir /home/node/code
 
-WORKDIR /home/root/code
+WORKDIR /home/node/code
 
-COPY --chown=root:root package.json yarn.lock ./
+COPY --chown=node:node package.json yarn.lock ./
 
 RUN yarn install --frozen-lockfile
 
-COPY --chown=root:root . .
+COPY --chown=node:node . .
 
 EXPOSE 4000
 
