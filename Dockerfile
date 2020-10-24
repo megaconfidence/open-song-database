@@ -1,5 +1,5 @@
 # Uses latest node 12 LTS on alpine
-FROM node:erbium-buster-slim
+FROM node:erbium-buster
 # FROM node:erbium-alpine
 
 
