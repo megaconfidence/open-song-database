@@ -20,10 +20,9 @@ RUN yarn install --frozen-lockfile
 
 COPY --chown=node:node . .
 
-EXPOSE 4000
-
 
 # Does server stuff
+ENV PORT=$PORT GTAG_ID=$GTAG_ID USER_DB=$USER_DB POSTMARK_TOKEN=$POSTMARK_TOKEN MUSIC_DB=$MUSIC_DB REDIS_HOST=$REDIS_HOST REDIS_PORT=$REDIS_PORT
 RUN yarn build
 
 CMD [ "yarn", "start" ]
