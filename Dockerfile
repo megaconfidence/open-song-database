@@ -36,6 +36,8 @@ ARG POSTMARK_TOKEN=$POSTMARK_TOKEN
 
 
 # Uses build args as env variables
+EXPOSE $PORT
+
 ENV PORT=$PORT 
 ENV NODE_ENV=$NODE_ENV
 
