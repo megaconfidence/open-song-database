@@ -1,4 +1,4 @@
-# Open Song Database API [![Build Status](https://travis-ci.org/cokoghenun/open-song-database-api.svg?branch=master)](https://travis-ci.org/cokoghenun/open-song-database-api)
+# Open Song Database API [![Build Status](https://github.com/cokoghenun/open-song-database-api/workflows/build/badge.svg)](https://github.com/cokoghenun/open-song-database-api/actions?query=workflow%3A%22build%22)
 
 Welcome to the Open Song Database API.<br >
 Front-end repo is [here](https://github.com/cokoghenun/open-song-database)
