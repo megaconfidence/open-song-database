@@ -10,4 +10,5 @@ export const POSTMARK_TOKEN = process.env.POSTMARK_TOKEN
 export const REDIS_CONFIG = {
   host: process.env.REDIS_HOST,
   port: process.env.REDIS_PORT,
+  password: process.env.REDIS_PASSWORD,
 }
