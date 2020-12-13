@@ -5,7 +5,7 @@ import routes from './routes'
 import express from 'express'
 import schema from './graphql'
 import { PORT } from './config'
-import analytics from './analytics'
+// import analytics from './analytics'
 import { validate, key } from './auth'
 import depthLimit from 'graphql-depth-limit'
 import { graphqlHTTP } from 'express-graphql'
@@ -32,7 +32,7 @@ server.use(json())
 server.use(morgan('dev'))
 server.use(mongoSanitize())
 server.use(urlencoded({ extended: true }))
-server.use(analytics)
+// server.use(analytics)
 
 server.get('/', (_, res) => res.redirect('https://www.osdbapi.com'))
 server.use('/key', modelfy, key)

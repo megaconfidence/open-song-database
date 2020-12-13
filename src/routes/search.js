@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { getQuery, handleError, send } from '../utils'
+import { getQuery, handleError, send, trackEvent } from '../utils'
 
 const search = Router()
 
@@ -8,6 +8,8 @@ search.get(
   handleError(async (req, res) => {
     const [_, limit, query] = getQuery(req.query)
     const song = await req.Song.search(query, limit)
+
+    await trackEvent('search', `get ${req.route.path}`, query)
     return send(res, song)
   })
 )
@@ -17,6 +19,8 @@ search.get(
   handleError(async (req, res) => {
     const [_, limit, query] = getQuery(req.query)
     const album = await req.Album.search(query, limit)
+
+    await trackEvent('search', `get ${req.route.path}`, query)
     return send(res, album)
   })
 )
@@ -26,6 +30,8 @@ search.get(
   handleError(async (req, res) => {
     const [_, limit, query] = getQuery(req.query)
     const artist = await req.Artist.search(query, limit)
+    
+    await trackEvent('search', `get ${req.route.path}`, query)
     return send(res, artist)
   })
 )
