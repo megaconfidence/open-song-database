@@ -4,12 +4,21 @@ import morgan from 'morgan'
 import routes from './routes'
 import express from 'express'
 import schema from './graphql'
-import { PORT, FRONTEND_URL } from './config'
+import Bugsnag from '@bugsnag/js'
 import { validate, key } from './auth'
 import depthLimit from 'graphql-depth-limit'
 import { graphqlHTTP } from 'express-graphql'
 import { json, urlencoded } from 'body-parser'
 import mongoSanitize from 'express-mongo-sanitize'
+import { PORT, FRONTEND_URL, BUGSNAG_KEY } from './config'
+import BugsnagPluginExpress from '@bugsnag/plugin-express'
+
+Bugsnag.start({
+  apiKey: BUGSNAG_KEY,
+  plugins: [BugsnagPluginExpress],
+})
+
+const bugsnagMidWer = Bugsnag.getPlugin('express')
 
 const modelfy = (req, _, next) => {
   for (const model in models) {
@@ -31,6 +40,7 @@ server.use(json())
 server.use(morgan('dev'))
 server.use(mongoSanitize())
 server.use(urlencoded({ extended: true }))
+server.use(bugsnagMidWer.requestHandler)
 
 server.get('/', (_, res) => res.redirect(FRONTEND_URL))
 server.use('/key', modelfy, key)
@@ -41,6 +51,7 @@ server.use((err, _, res, __) => {
   console.log({ error: err.stack })
   return res.status(500).end()
 })
+server.use(bugsnagMidWer.errorHandler)
 
 export default () => {
   server.listen(PORT, () => {

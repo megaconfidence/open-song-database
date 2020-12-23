@@ -13,6 +13,8 @@
     "test": "echo \"No test lol\""
   },
   "dependencies": {
+    "@bugsnag/js": "^7.5.4",
+    "@bugsnag/plugin-express": "^7.5.4",
     "@cokoghenun/async-iterator": "^1.0.3",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
