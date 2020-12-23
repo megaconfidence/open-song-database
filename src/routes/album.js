@@ -10,7 +10,7 @@ album.get(
     const [page, limit] = getQuery(req.query)
     const album = await req.Album.page(page, limit)
 
-    await trackEvent('album', `get ${req.route.path}`, album.name)
+    await trackEvent('album', `get ${req.route.path}`, album?.name)
     return send(res, album)
   })
 )
@@ -26,7 +26,7 @@ album.get(
       return { ...a, song }
     })
 
-    await trackEvent('album', `get ${req.route.path}`, album.name)
+    await trackEvent('album', `get ${req.route.path}`, album?.name)
     return send(res, album_song)
   })
 )
@@ -36,7 +36,7 @@ album.get(
   handleError(async (req, res) => {
     const album = await req.Album.findOne(req.params.id)
 
-    await trackEvent('album', `get ${req.route.path}`, album.name)
+    await trackEvent('album', `get ${req.route.path}`, album?.name)
     return send(res, album)
   })
 )
@@ -47,7 +47,7 @@ album.get(
     const album = await req.Album.findOne(req.params.id)
     const song = await req.Song.findMany({ album })
 
-    await trackEvent('album', `get ${req.route.path}`, album.name)
+    await trackEvent('album', `get ${req.route.path}`, album?.name)
     return send(res, { ...album, song })
   })
 )

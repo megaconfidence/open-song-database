@@ -4,7 +4,7 @@ const resolvers = {
   Query: {
     async album(_, { id }, { Album }) {
       const album = await Album.findOne(id)
-      await trackEvent('album', `graphql album`, album.name)
+      await trackEvent('album', `graphql album`, album?.name)
       return album
     },
     async albums(_, { input: { page, limit } }, { Album }) {
@@ -18,12 +18,12 @@ const resolvers = {
     },
     async artist(_, { id }, { Artist }) {
       const artist = await Artist.findOne(id)
-      await trackEvent('artist', `graphql artist`, artist.name)
+      await trackEvent('artist', `graphql artist`, artist?.name)
       return artist
     },
     async song(_, { id }, { Song }) {
       const song = await Song.findOne(id)
-      await trackEvent('song', `graphql song`, song.name)
+      await trackEvent('song', `graphql song`, song?.name)
       return song
     },
     async searchSong(_, { input: { query, limit } }, { Song }) {

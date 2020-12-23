@@ -9,7 +9,7 @@ artist.get(
   handleError(async (req, res) => {
     const artist = await req.Artist.findOne(req.params.id)
 
-    await trackEvent('artist', `get ${req.route.path}`, artist.name)
+    await trackEvent('artist', `get ${req.route.path}`, artist?.name)
     return send(res, artist)
   })
 )
@@ -20,7 +20,7 @@ artist.get(
     const artist = await req.Artist.findOne(req.params.id)
     const album = await req.Album.findMany({ artist })
 
-    await trackEvent('artist', `get ${req.route.path}`, artist.name)
+    await trackEvent('artist', `get ${req.route.path}`, artist?.name)
     return send(res, { ...artist, album })
   })
 )
@@ -35,7 +35,7 @@ artist.get(
       return { ...a, song }
     })
 
-    await trackEvent('artist', `get ${req.route.path}`, artist.name)
+    await trackEvent('artist', `get ${req.route.path}`, artist?.name)
     return send(res, { ...artist, album: album_song })
   })
 )
