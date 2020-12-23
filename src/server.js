@@ -4,7 +4,7 @@ import morgan from 'morgan'
 import routes from './routes'
 import express from 'express'
 import schema from './graphql'
-import { PORT } from './config'
+import { PORT, FRONTEND_URL } from './config'
 import { validate, key } from './auth'
 import depthLimit from 'graphql-depth-limit'
 import { graphqlHTTP } from 'express-graphql'
@@ -32,7 +32,7 @@ server.use(morgan('dev'))
 server.use(mongoSanitize())
 server.use(urlencoded({ extended: true }))
 
-server.get('/', (_, res) => res.redirect('https://www.osdbapi.com'))
+server.get('/', (_, res) => res.redirect(FRONTEND_URL))
 server.use('/key', modelfy, key)
 server.use('/rest/:key', validate, modelfy, routes)
 server.use('/graphql/:key', validate, graphqlHTTP(gqlConfig))

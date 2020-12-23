@@ -1,5 +1,6 @@
 import { Router } from 'express'
-import { asyncMap, getQuery, handleError, send, trackEvent } from '../utils'
+import { asyncMap } from '@cokoghenun/async-iterator'
+import { getQuery, handleError, send, trackEvent } from '../utils'
 
 const album = Router()
 
@@ -24,7 +25,7 @@ album.get(
       const song = await req.Song.findMany({ album: a._id })
       return { ...a, song }
     })
-    
+
     await trackEvent('album', `get ${req.route.path}`, album.name)
     return send(res, album_song)
   })

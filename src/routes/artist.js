@@ -1,5 +1,6 @@
 import { Router } from 'express'
-import { asyncMap, handleError, send, trackEvent } from '../utils'
+import { asyncMap } from '@cokoghenun/async-iterator'
+import { handleError, send, trackEvent } from '../utils'
 
 const artist = Router()
 
