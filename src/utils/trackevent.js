@@ -3,7 +3,7 @@ import { GTAG_ID } from '../config'
 
 const trackEvent = (category, action, label, value) => {
   return fetch(
-    `http://www.google-analytics.com/collect?v=1&cid=555&t=event&tid=${GTAG_ID}&dp=%2F${category}&ec=${category}&ea=${action}&el=${label}`,
+    `http://www.google-analytics.com/collect?v=1&cid=555&t=event&tid=${GTAG_ID}&dp=%2F${category}&ec=${category}&ea=${action}&el=${label}&ev=${value}`,
     {
       headers: {
         'user-agent':
