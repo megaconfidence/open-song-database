@@ -44,6 +44,24 @@ server.use(bugsnagMidWer.requestHandler)
 
 server.get('/', (_, res) => res.redirect(FRONTEND_URL))
 server.use('/key', modelfy, key)
+
+//cors rule for playground endpoints
+const whitelist = [FRONTEND_URL]
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  },
+}
+
+//playground endpoints
+server.use('/rest/playgroundkey', cors(corsOptions), modelfy, routes)
+server.use('/graphql/playgroundkey', cors(corsOptions), graphqlHTTP(gqlConfig))
+
+//production endpoints
 server.use('/rest/:key', validate, modelfy, routes)
 server.use('/graphql/:key', validate, graphqlHTTP(gqlConfig))
 

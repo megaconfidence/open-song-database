@@ -3,10 +3,6 @@ import limiter from './limiter'
 import { handleError } from '../../utils'
 
 const auth = handleError(async (req, res, next) => {
-  const host = req.headers.host
-  console.log({ host })
-  if (host.includes('osdbapi.com')) return next()
-
   const user = await models.User.findOne({
     key: req.params.key,
   })
