@@ -3,7 +3,7 @@ import redisStore from 'rate-limit-redis'
 import rateLimit from 'express-rate-limit'
 import { REDIS_CONFIG } from '../../config'
 
-const max = 1000
+const max = 10000
 const limiter = rateLimit({
   max,
   delayMs: 0,
