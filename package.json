@@ -35,7 +35,7 @@
     "omit-deep-lodash": "^1.1.4",
     "postmark": "^2.5.5",
     "rate-limit-redis": "^2.0.0",
-    "validator": "^13.1.1"
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
