@@ -13,12 +13,12 @@ import mongoSanitize from 'express-mongo-sanitize'
 import { PORT, FRONTEND_URL, BUGSNAG_KEY } from './config'
 import BugsnagPluginExpress from '@bugsnag/plugin-express'
 
-Bugsnag.start({
-  apiKey: BUGSNAG_KEY,
-  plugins: [BugsnagPluginExpress],
-})
+// Bugsnag.start({
+//   apiKey: BUGSNAG_KEY,
+//   plugins: [BugsnagPluginExpress],
+// })
 
-const bugsnagMidWer = Bugsnag.getPlugin('express')
+// const bugsnagMidWer = Bugsnag.getPlugin('express')
 
 const modelfy = (req, _, next) => {
   for (const model in models) {
@@ -40,7 +40,7 @@ server.use(json())
 server.use(morgan('dev'))
 server.use(mongoSanitize())
 server.use(urlencoded({ extended: true }))
-server.use(bugsnagMidWer.requestHandler)
+// server.use(bugsnagMidWer.requestHandler)
 
 server.get('/', (_, res) => res.redirect(FRONTEND_URL))
 server.use('/key', modelfy, key)
@@ -69,7 +69,7 @@ server.use((err, _, res, __) => {
   console.log({ error: err.stack })
   return res.status(500).end()
 })
-server.use(bugsnagMidWer.errorHandler)
+// server.use(bugsnagMidWer.errorHandler)
 
 export default () => {
   server.listen(PORT, () => {

@@ -1,5 +1,6 @@
 # Uses latest node 12 LTS on alpine
-FROM node:erbium-alpine
+# FROM node:erbium-alpine
+FROM node:16.3.0-alpine
 
 
 # Adds Tini
