@@ -30,7 +30,7 @@
     "mongoose": "^5.10.0",
     "mongoose-lean-virtuals": "^0.6.9",
     "morgan": "^1.10.0",
-    "nanoid": "^3.1.12",
+    "nanoid": "^3.1.31",,
     "node-fetch": "^2.6.7",
     "omit-deep-lodash": "^1.1.4",
     "postmark": "^2.5.5",
