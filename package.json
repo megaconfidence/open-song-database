@@ -6,7 +6,7 @@
   "author": "Confidence Okoghenun <confidenceboi@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "babel src --out-dir dist",
+    "build": "npx babel src --out-dir dist",
     "dev": "nodemon --exec yarn restart",
     "restart": "clear && rimraf dist && yarn build && yarn start",
     "start": "node dist/index.js",
