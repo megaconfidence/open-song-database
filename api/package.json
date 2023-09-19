@@ -1,10 +1,14 @@
 {
-  "name": "open-song-database",
+  "name": "@open-song-database/api",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "git@github.com:Confidence-Okoghenun/open-song-database.git",
   "author": "Confidence Okoghenun <confidenceboi@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": "^16.20.2",
+    "npm": "^8.19.4"
+  },
   "scripts": {
     "build": "npx babel src --out-dir dist",
     "dd": "babel --version",

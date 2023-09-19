@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "Welcome to the Open Song Database <br >",
   "author": "Confidence Okoghenun <confidenceboi@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
+  "engines": {
+    "node": "^16.20.2",
+    "npm": "^8.19.4"
+  },
   "dependencies": {
     "@emotion/core": "^10.0.35",
     "prismjs": "^1.21.0",

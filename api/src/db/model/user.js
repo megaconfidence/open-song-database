@@ -2,7 +2,6 @@ import mongoose from 'mongoose'
 import { USER_DB } from '../../config'
 import mongooseLeanVirtuals from 'mongoose-lean-virtuals'
 
-console.log({ USER_DB })
 const userDB = mongoose.createConnection(USER_DB, {
   useCreateIndex: true,
   useNewUrlParser: true,
