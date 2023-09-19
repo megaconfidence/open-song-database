@@ -1,30 +1,10 @@
-# Open Song Database API [![Build Status](https://github.com/cokoghenun/open-song-database-api/workflows/build/badge.svg)](https://github.com/cokoghenun/open-song-database-api/actions?query=workflow%3A%22build%22)
+# Open Song Database
 
-Welcome to the Open Song Database API.<br >
-Front-end repo is [here](https://github.com/cokoghenun/open-song-database)
+Welcome to the Open Song Database <br >
 
 ## Contributions
 
 Your contributions are highly welcomed.
-
-## Docs
-
-The documentation of this API can be found at [https://osdbapi.com](https://osdbapi.com/docs/)
-
-## Scripts
-
-In the project directory, you can run:
-
-### `yarn dev`
-
-Runs the app in the development mode on port `4000`.<br />
-`REST` endpoint is at `http://localhost:4000/rest/<your-api-key>/`.<br />
-Open `http://localhost:4000/graphql/<your-api-key>/` to view GraphiQL the browser.
-
-### `yarn build`
-
-Builds the app for production to the `dist/` folder.<br />
-It correctly transpiles the project in production mode and optimizes the build for the best performance.
 
 ## Road Map
 
