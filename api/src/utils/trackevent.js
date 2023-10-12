@@ -12,8 +12,11 @@ const trackEvent = async (category, action, label, value = 1) => {
       },
       body: JSON.stringify({
         name: 'pageview',
-        url: `${FRONTEND_URL}/apievents/${category}/${action}/${label}/${value}`,
-        domain: FRONTEND_URL,
+        url: `${FRONTEND_URL}/apievents/${category}/${action.replace(
+          ' ',
+          '/'
+        )}/${label}/${value}`,
+        domain: FRONTEND_URL.split('://')[1],
       }),
     })
   } catch (e) {
