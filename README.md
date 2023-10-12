@@ -1,18 +1,15 @@
 # Open Song Database
 
-Welcome to the Open Song Database <br >
+![banner](./image.jpg)
 
-## Contributions
+Welcome to the Open Song Database. This repository contains the [backend API](./api) and [fronted documentation](./docs) <br >
 
-Your contributions are highly welcomed.
+A live version of this service can be found at [https://osdb.confidence.sh/](https://osdb.confidence.sh/) <br>
 
 ## Road Map
 
 This is the roadmap of the project for the foreseeable future:
 
 - [x] First version release
-- [x] Automatic deploy
+- [x] Automatic deployment
 - [ ] Add demo dataset to repo
-- [ ] Write tests
-- [ ] Add more API endpoints
-- [ ] Fully automate database update with trending songs
