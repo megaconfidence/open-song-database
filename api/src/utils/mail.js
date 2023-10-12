@@ -1,8 +1,7 @@
-import { ServerClient } from 'postmark'
-import { POSTMARK_TOKEN } from '../config'
+import { createTransport } from 'nodemailer'
+import { SMTP_CONFIG, SMTP_SENDER_ADDRESS } from '../config'
 
-const pmClient = new ServerClient(POSTMARK_TOKEN)
-
+const transporter = createTransport(SMTP_CONFIG)
 const mail = async ({ firstname, key, email }) => {
   try {
     const capitalize = (s) => {
@@ -10,17 +9,14 @@ const mail = async ({ firstname, key, email }) => {
       return s.charAt(0).toUpperCase() + s.slice(1)
     }
 
-    const { Message } = await pmClient.sendEmailWithTemplate({
-      To: email,
-      TemplateAlias: 'api-key',
-      From: 'support@osdbapi.com',
-      TemplateModel: {
-        api_key: key,
-        first_name: capitalize(firstname),
-      },
+    const { messageId } = await transporter.sendMail({
+      from: SMTP_SENDER_ADDRESS,
+      to: email,
+      subject: 'Your OSDB API key',
+      text: `Hello ${capitalize(firstname)}, \n\nYour API key is ${key}`,
     })
 
-    return Message
+    return messageId
   } catch (error) {
     console.log({ error })
   }
