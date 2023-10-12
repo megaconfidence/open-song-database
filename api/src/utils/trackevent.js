@@ -1,16 +1,24 @@
 import fetch from 'node-fetch'
-import { GTAG_ID } from '../config'
+import { FRONTEND_URL, GTAG_ID, PLAUSIBLE_URL } from '../config'
 
-const trackEvent = (category, action, label, value=1) => {
-  return fetch(
-    `http://www.google-analytics.com/collect?v=1&cid=555&t=event&tid=${GTAG_ID}&dp=%2F${category}&ec=${category}&ea=${action}&el=${label}&ev=${value}`,
-    {
+const trackEvent = async (category, action, label, value = 1) => {
+  try {
+    await fetch(`${PLAUSIBLE_URL}/api/event`, {
+      method: 'POST',
       headers: {
-        'user-agent':
-          'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36',
+        'User-Agent':
+          'Mozilla/5.0 (X11; U; Linux i686; en; rv:1.8.1.12) Gecko/20080208 (Debian-1.8.1.12-2) Epiphany/2.20',
+        'Content-Type': 'application/json',
       },
-    }
-  )
+      body: JSON.stringify({
+        name: 'pageview',
+        url: `${FRONTEND_URL}/apievents/${category}/${action}/${label}/${value}`,
+        domain: FRONTEND_URL,
+      }),
+    })
+  } catch (e) {
+    console.log(e.message)
+  }
 }
 
 export default trackEvent
